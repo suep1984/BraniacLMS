@@ -2,11 +2,10 @@
 
 {% block content %}
 
-    {% with range as double_range %}
         <div class="row">
 
             <div class="col-lg-8">
-                {% for i in double_range %}
+                {% for i in range %}
                     <div class="card my-2">
                         <div class="card-body">
                             <h5 class="card-title">{{ news_title }}</h5>
@@ -62,5 +61,4 @@
             </nav>
         </div>
 
-    {% endwith %}
 {% endblock content %}
