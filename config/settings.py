@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'markdownify.apps.MarkdownifyConfig',
     'mainapp',
+    'authapp',
+    'social_django'
 ]
 
 MIDDLEWARE = [
@@ -62,8 +64,11 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.media',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -125,3 +130,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / 'media'
+AUTH_USER_MODEL = 'authapp.CustomUser'
+LOGIN_REDIRECT_URL = 'mainapp:main_page'
+LOGOUT_REDIRECT_URL = 'mainapp:main_page'
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+SOCIAL_AUTH_GITHUB_KEY = '323d9dce005b0942a183'
+SOCIAL_AUTH_GITHUB_SECRET = 'c7dadc9cb16a7a2b45a8324d358d916c73d742b7'
